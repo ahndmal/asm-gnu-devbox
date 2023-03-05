@@ -1,15 +1,13 @@
 .data                         /* put the following in data segment */
  
-hello_str:                    /* our string                        */
+hello_str:                    /* our string     */
         .string "Hello, world!\n"
- 
-                              /* string length                       */
+                              /* string length   */
         .set hello_str_length, . - hello_str - 1
  
-.text                         /* поместить следующее в сегмент кода */
+.text                         /* put this in code segment */
  
-.globl  main                  /* main - глобальный символ, видимый
-                                 за пределами текущего файла        */
+.globl  main                  /* main - global symbol, seen outside the current file */
 .type   main, @function       /* main - function (not data)       */
  
  
@@ -27,7 +25,7 @@ main:
  
         int     $0x80         /* вызвать прерывание 0x80            */
  
-        movl    $1, %eax      /* номер системного вызова exit = 1   */
+        movl    $1, %eax      /* systen call - exit = 1   */
         movl    $0, %ebx      /* передать 0 как значение параметра  */
         int     $0x80         /* вызвать exit(0)                    */
  
